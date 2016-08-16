@@ -1,0 +1,148 @@
+body {
+  color: #333;
+  background: rgba(245,245,245,1);
+}
+
+header {
+  display: block;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  /* height: 12em; */
+  width: 100%;
+  background: rgba(225,225,225,1);
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 1em;
+  background: rgba(225,225,225,1);
+}
+section {
+  display: none;
+  opacity:0;
+  height: 100%;
+  padding-top: 12em;
+  text-align: center;
+  padding: 11.5em 0px 6em;
+}
+
+section.active {
+  display: block;
+}
+
+.heading {
+  /* font-size: 1.3em; */
+  margin: 2em 0px;
+}
+
+.heading div {
+  font-size: 1.5em;
+}
+
+.tablecontainer {
+  height: 7em;
+  /* overflow-y: scroll; */
+  overflow-x: hidden;
+  border: 2.5px solid white;
+  border-radius: 0.3em;
+  background: rgb(250,250,250);
+
+}
+
+/** NAVIGATION **/
+.menuinput, .navitem {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.navitem {
+  margin: 1em 0px;
+}
+
+.navitem#maintitle {
+  margin: 0.5em 0px;
+  text-shadow: 0px 0px 4px rgba(255,255,255,1);
+}
+
+.menulink {
+  margin: 0;
+  padding: 0.2em 1em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+  background: rgb(194, 195, 136);
+  border: 2.5px solid rgba(255,255,255,1);
+  border-radius: 0.3em;
+}
+
+/** BUTTONS **/
+.btn {
+  padding: 0.3em;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+  background: rgb(194, 195, 136);
+  border: 2.5px solid rgba(255,255,255,1);
+  border-radius: 0.3em;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+}
+
+.formitem {
+  text-align: center;
+  margin: 2em 0px;
+}
+
+.prefix, .suffix {
+  line-height: 1.25em;
+}
+
+.prefix {
+  text-align: right;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-justify {
+  text-align: justify;
+}
+
+.inline {
+  display: inline-block;
+}
+
+/** VALIDATION **/
+/*
+.error {
+  box-shadow: 0 0 15px rgba(255,100,100,1);
+}
+*/
+
+/** MISC VISUALS **/
+.shadow {
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+}
+
+.light-shadow {
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+}
+
+img.half {
+  height: 67px;
+  width: 300px;
+}

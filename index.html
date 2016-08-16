@@ -1,0 +1,522 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+        <link rel="stylesheet" href="css/kube.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <header class="shadow">
+          <div class="row">
+            <div id="mainlogo" class="col offset-2 col-8">
+              <div class="row centered">
+                <a href="http://www.alwayscollect.com/"><img src="img/logo.png"/></a>
+              </div>
+              <div class="row centered">
+                <div id="maintitle" class="navitem" linkto="home">Revenue Projection Calculator</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Home/Welcome Page -->
+        <section id="home" class="active">
+          <div class="navitem row splice" linkto="section1">
+            <div class="col offset-2 col-1 text-right">
+              <div class="btn light-shadow" style="padding-top: 0.45em;">
+                <i class="fa fa-credit-card"></i>
+              </div>
+            </div>
+            <div class="col col-7">
+              <div class="menulink light-shadow">Revenue Lost to Credit Card Companies</div>
+            </div>
+          </div>
+          <div class="navitem row splice" linkto="section2">
+            <div class="col offset-2 col-1">
+              <div class="btn light-shadow" style="padding-top: 0.4em;">
+                <i class="fa fa-money"></i>
+              </div>
+            </div>
+            <div class="col col-7">
+               <div class="menulink light-shadow">Revenue Loss From Fear of Financing</div>
+            </div>
+          </div>
+          <div class="navitem row splice" linkto="section3">
+            <div class="col offset-2 col-1">
+              <div class="btn light-shadow" style="padding-top: 0.38em;">
+                <i class="fa fa-bank"></i>
+              </div>
+            </div>
+            <div class="col col-7">
+              <div class="menulink light-shadow">Revenue Loss From Outsourced Financing</div>
+            </div>
+          </div>
+          <div class="navitem row splice" linkto="section4">
+            <div class="col offset-2 col-1">
+              <div class="btn light-shadow" style="padding-top: 0.38em;">
+                <i class="fa fa-bank"></i>
+              </div>
+            </div>
+            <div class="col col-7">
+              <div class="menulink light-shadow">Revenue Loss From Collections</div>
+            </div>
+          </div>
+        </section>
+        <!-- Calculate Revenue Lost to Credit Card Companies -->
+        <section id="section1">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Revenue Loss From Merchant Services</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What is your Monthly Average Sales in which Customers purchase with Credit Card?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-1 col-1 prefix">$</div>
+                  <div class="col col-8">
+                    <input id="avgsales" class="moneyfield width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What is Merchant Service Charging you to collect your own profits?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="merchantservicecharge" class="interestfield width-100" type="number"></input>
+                  </div>
+                  <div class="inline col col-1 suffix">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Calculate What I am Giving Away</div>
+              <div class="menuinput col col-12 btn-calculate">
+                <i class="btn fa fa-calculator"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section1calculation">
+          <div class="heading row">
+            <div class="col col-12">Revenue Loss From Merchant Services</div>
+          </div>
+          <div class="formitem row">
+            <div class="menuinput col offset-2 col-8 tablecontainer">
+              <table id="lossTable"></table>
+            </div>
+          </div>
+          <div class="formitem row">
+            <div class="menuprompt col offset-2 col-8">Potential Profit</div>
+            <div class="menuinput col offset-2 col-8">
+              <div class="row">
+                <div class="col offset-1 col-1 prefix">$</div>
+                <div class="col col-8">
+                  <input id="potentialprofit" class="width-100" type="number"></input>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="formitem row">
+            <div class="col offset-2 col-8">
+              <div class="row">
+                <div class="navitem col col-4" linkto="section1">
+                  <i class="btn btn-back fa fa-arrow-left"></i>
+                </div>
+                <div class="navitem col col-4" linkto="home">
+                  <i class="btn btn-home fa fa-arrow-up"></i>
+                </div>
+                <div class="navitem col col-4" linkto="home">
+                  <i class="btn btn-forward fa fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="formitem row">
+            <div class="menuinput col col-12">
+              <i class="btn btn-back fa fa-print"></i>
+            </div>
+          </div>
+        </section>
+        <!-- Calculate Loss From Fear of Financing -->
+        <section id="section2">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Calculate Loss From Fear of Financing</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What is your core product (the item that you would want to finance)?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="productname" class="width-100" type="text"></input>
+                  </div>
+                  <!--<div class="inline col col-1">%</div>-->
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">By Financing, What sell price could you sell it for?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="inline col col-1 prefix">$</div>
+                  <div class="col offset-1 col-8">
+                    <input id="sellprice" class="moneyfield width-100" type="number"></input>
+                  </div>
+                  <!--<div class="inline col col-1">%</div>-->
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What interest rate would you charge?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="interestrate" class="interestfield width-100" type="number"></input>
+                  </div>
+                  <div class="inline col col-1 suffix">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What would be the length of financing in months?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="financemonths" class="width-100" type="number"></input>
+                  </div>
+                  <!-- <div class="inline col col-1"></div> -->
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Annual Loss</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="inline col col-1 prefix">$</div>
+                  <div class="col offset-1 col-8">
+                    <input class="moneyfield width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Calculate What I am Giving Away</div>
+              <div class="menuinput col col-12 btn-calculate">
+                <i class="btn fa fa-calculator"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section2calculation">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Calculate Loss From Fear of Financing</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuinput col offset-2 col-8 tablecontainer">
+                <table id="lossTable"></table>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Potential Profit</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-1 col-1 prefix">$</div>
+                  <div class="col col-8">
+                    <input id="potentialprofit" class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="col offset-2 col-8">
+                <div class="row">
+                  <div class="navitem col col-4" linkto="section2">
+                    <i class="btn btn-back fa fa-arrow-left"></i>
+                  </div>
+                  <div class="navitem col col-4" linkto="home">
+                    <i class="btn btn-home fa fa-arrow-up"></i>
+                  </div>
+                  <div class="navitem col col-4" linkto="home">
+                    <i class="btn btn-forward fa fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuinput col col-12">
+                <i class="btn btn-back fa fa-print"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Revenue Loss From Outsourcing Financing -->
+        <section id="section3">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Revenue Loss From Outsourcing Financing</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What is your core product sell for? (the item that you would want to finance)?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="productname" class="width-100" type="text"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">By Financing, What sell price could you sell it for?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="inline col col-1 prefix">$</div>
+                  <div class="col offset-1 col-8">
+                    <input id="sellprice" class="moneyfield width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What interest rate would you charge?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="interestrate" class="interestfield width-100" type="number"></input>
+                  </div>
+                  <div class="inline col col-1 suffix">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What would be the length of financing in Months?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="financemonths" class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">How Many Per Month?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">How much is the finance company taking of your profit?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input class="interestfield width-100" type="number"></input>
+                  </div>
+                  <div class="inline col col-1">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Calculate What I am Giving Away</div>
+              <div class="menuinput col col-12 btn-calculate">
+                <i class="btn fa fa-calculator"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section3calculation">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Revenue Loss From Outsourcing Financing</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuinput col offset-2 col-8 tablecontainer">
+                <table id="lossTable"></table>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Potential Profit</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-1 col-1 prefix">$</div>
+                  <div class="col col-8">
+                    <input id="potentialprofit" class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="col offset-2 col-8">
+                <div class="row">
+                  <div class="navitem col col-4" linkto="section2">
+                    <i class="btn btn-back fa fa-arrow-left"></i>
+                  </div>
+                  <div class="navitem col col-4" linkto="home">
+                    <i class="btn btn-home fa fa-arrow-up"></i>
+                  </div>
+                  <div class="navitem col col-4" linkto="home">
+                    <i class="btn btn-forward fa fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuinput col col-12">
+                <i class="btn btn-back fa fa-print"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Revenue Loss From Collections -->
+        <section id="section4">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Revenue Loss From Collections</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What is your core product sell for? (the item that you would want to finance)?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="productname" class="width-100" type="text"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">By Financing, What sell price could you sell it for?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row splice">
+                  <div class="inline col col-1 prefix">$</div>
+                  <div class="col offset-1 col-8">
+                    <input id="sellprice" class="moneyfield width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What interest rate would you charge?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row splice">
+                  <div class="col offset-2 col-8">
+                    <input id="interestrate" class="interestfield width-100" type="number"></input>
+                  </div>
+                  <div class="inline col col-1 suffix">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">What would be the length of financing in Months?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input id="financemonths" class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">How Many Per Month?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-2 col-8">
+                    <input class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">How much is the finance company taking of your profit?</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row splice">
+                  <div class="col offset-2 col-8">
+                    <input class="interestfield width-100" type="number"></input>
+                  </div>
+                  <div class="inline col col-1">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Calculate What I am Giving Away</div>
+              <div class="menuinput col col-12 btn-calculate">
+                <i class="btn fa fa-calculator"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section4calculation">
+          <div class="container">
+            <div class="heading row">
+              <div class="col col-12">Revenue Loss From Collections</div>
+            </div>
+            <div class="formitem row">
+              <div class="menuinput col offset-2 col-8 tablecontainer">
+                <table id="lossTable"></table>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuprompt col offset-2 col-8">Potential Profit</div>
+              <div class="menuinput col offset-2 col-8">
+                <div class="row">
+                  <div class="col offset-1 col-1 prefix">$</div>
+                  <div class="col col-8">
+                    <input id="potentialprofit" class="width-100" type="number"></input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="col offset-2 col-8">
+                <div class="row">
+                  <div class="navitem col col-4" linkto="section2">
+                    <i class="btn btn-back fa fa-arrow-left"></i>
+                  </div>
+                  <div class="navitem col col-4" linkto="home">
+                    <i class="btn btn-home fa fa-arrow-up"></i>
+                  </div>
+                  <div class="navitem col col-4" linkto="home">
+                    <i class="btn btn-forward fa fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="formitem row">
+              <div class="menuinput col col-12">
+                <i class="btn btn-back fa fa-print"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Common Footer -->
+        <footer class="shadow">
+          <div class="row centered">
+            <a href="http://www.alwayscollect.com/"><img src="img/logo.png" class="half"/></a>
+          </div>
+        </footer>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/kube.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
