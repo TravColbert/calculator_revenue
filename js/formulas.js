@@ -63,6 +63,17 @@ var formulas = {
       resultTable.push(["Your profit potential per " + c + " years:",roundToCent(yearDiff)]);
     }
     return resultTable;
+  },
+  section3: function(vars) {
+    /** Critical vars:
+     * sellprice
+     * interestrate
+     * financemonths
+     * numunits
+     * merchantservicecharge
+     */
+
+
   }
 };
 
