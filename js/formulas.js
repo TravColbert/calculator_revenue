@@ -6,8 +6,9 @@ var formulas = {
      */
     var resultTable=[];
     vars.avgsales = parseFloat(vars.avgsales);
-    //vars.merchantservicecharge = getInterestFromAPR(parseFloat(vars.merchantservicecharge));
-    vars.merchantservicecharge = (parseFloat(vars.merchantservicecharge)/100);
+    vars.merchantservicecharge = parseFloat(getMonthlyInterestFromAPR(vars.merchantservicecharge));
+    console.log("Monthly interest rate: " + vars.merchantservicecharge);
+    //vars.merchantservicecharge = parseFloat(vars.merchantservicecharge)/100;
 
     var monthGross = simpleInterestPlusPrincipal(vars.avgsales,vars.merchantservicecharge,1);
     console.log("Gross: " + monthGross);
