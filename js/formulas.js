@@ -4,36 +4,40 @@ var formulas = {
      * avgsales
      * merchantservicecharge
      */
+    var fixedLoanLength = 5;
+    var fixedMerchantCharge = (18/100);
     var resultTable=[];
     vars.avgsales = parseFloat(vars.avgsales);
-    vars.merchantservicecharge = parseFloat(getMonthlyInterestFromAPR(vars.merchantservicecharge));
-    console.log("Monthly interest rate: " + vars.merchantservicecharge);
-    //vars.merchantservicecharge = parseFloat(vars.merchantservicecharge)/100;
+    vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
+    var merchantServiceChargeAmnt = parseFloat(vars.merchantservicecharge*vars.avgsales);
+    console.log("Merchant's charge (amnt): " + merchantServiceChargeAmnt);
 
-    var monthGross = simpleInterestPlusPrincipal(vars.avgsales,vars.merchantservicecharge,1);
-    console.log("Gross: " + monthGross);
-    console.log("Net: " + vars.avgsales);
-    console.log(monthGross-vars.avgsales);
-    resultTable.push(["Your profit potential per month:",roundToCent(monthGross-vars.avgsales)]);
+    var fiveYearGross = compoundInterest(vars.avgsales,parseFloat(fixedMerchantCharge),fixedLoanLength);
+    var oneYearGross = fiveYearGross/5;
 
-    /* These yearly calculations seem to be something like a 'future value of
-     * annuity' calculation. Therefore:
-     *
-     * FV = Pmt * (((1 + r) ^ n) – 1)/r)
-     * FV : future value
-     * Pmt: Monthly payment
-     * r  : interest rate
-     * n  : number of periods (months)
-     */
+    //var fiveYearNet = vars.avgsales*fixedLoanLength*12;
+    //var fiveYearInterest = fiveYearGross-fiveYearNet;
+    //var valueOfSeries = futureValueOfSeriesEnd(vars.avgsales,parseFloat(fixedMerchantCharge),fixedLoanLength);
+
+    console.log("Five year GROSS @ 18% (amnt): " + fiveYearGross);
+    console.log("One year GROSS: " + oneYearGross);
+    //console.log("Five year NET @ 18% (amnt): " + fiveYearNet);
+    //console.log("Five year interest @ 18% (amnt): " + fiveYearInterest);
+    //console.log("Future value of series for 5 years: " + valueOfSeries);
+
+    var oneYearPotential = oneYearGross + merchantServiceChargeAmnt;
+    console.log("One year potential: " + oneYearPotential);
+    /*
+    var oneMonthPotential = oneYearPotential/60;
+    console.log("Monthly potential: " + oneMonthPotential);
+    */
+    var calc3 = oneYearPotential * 12;
+    console.log("Calc3: " + calc3);
+
     for(var c=1;c<21;c++) {
-      var yearGross = futureValueOfAnnuity(vars.avgsales,vars.merchantservicecharge,(c*12));
-      var yearNet = vars.avgsales*(c*12);
-      /*
-      console.log("Gross: " + yearGross);
-      console.log("Net: " + yearNet);
-      console.log(yearGross-yearNet);
-      */
-      resultTable.push(["Your profit potential per " + c + " years:",roundToCent(yearGross-yearNet)]);
+      var yearGross = calc3 * c;
+      console.log("Year " + c + " potential: " + yearGross);
+      resultTable.push(["Your profit potential per " + c + " years:",roundToCent(yearGross)]);
     }
     return resultTable;
   },
@@ -84,7 +88,7 @@ var formulas = {
  * FV : future value
  * Pmt: Monthly payment
  * r  : interest rate
- * n  : number of periods (months)
+ * n  : number of years
  *
  * NOTES ON INTEREST RATES:
  *
@@ -110,17 +114,24 @@ var simpleInterestPlusPrincipal = function(pmt,r,n) {
   return pmt*(1+r)*n;
 }
 
-var compoundInterestPlusPrincipal = function(pmt,r,n) {
-  console.log("Compound interest + principal - pmt: " + pmt + " rate: " + r + " months: " + n);
-  // refs[0]*Math.pow(1+((refs[1]/100)/refs[3]),(refs[2]*refs[3]));
-  return pmt*Math.pow(1+(r/12),n);
+var compoundInterest = function(pmt,r,y) {
+  console.log("Compound interest + principal - pmt: " + pmt + " rate: " + r + " years: " + y);
+  return pmt*Math.pow(1+(r/12),(12*y));
 }
 
 var futureValueOfAnnuity = function(pmt,r,n) {
   console.log("Future Value of Annuity - pmt: " + pmt + " rate: " + r + " months: " + n);
   return pmt*((Math.pow((1+r),n)-1)/r);
-};
+}
 
+var futureValueOfSeriesEnd = function(pmt,r,y) {
+  console.log("Future Value of Series End of period - pmt: " + pmt + " rate: " + r + " years: " + y);
+  return pmt*(Math.pow((1+(r/12)),(12*y)-1)/(r/12));
+}
+
+var futureValueOfSeriesBeginning = function(pmt,r,y) {
+  console.log("Future Value of Series Beginning period - pmt: " + pmt + " rate: " + r + " years: " + y);
+}
 var roundToCent = function(val) {
   return Math.round(val*100)/100;
 }
