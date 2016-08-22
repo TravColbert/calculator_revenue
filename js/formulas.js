@@ -5,34 +5,49 @@ var formulas = {
      * merchantservicecharge
      */
     var fixedLoanLength = 5;
-    var fixedMerchantCharge = (18/100);
+    //var fixedMerchantCharge = (18/100);
+    var fixedInterestRate = getDailyInterestFromAPR(18);
+    //var fixedInterestRate = getMonthlyInterestFromAPR(18);
     var resultTable=[];
     vars.avgsales = parseFloat(vars.avgsales);
     vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
     var merchantServiceChargeAmnt = parseFloat(vars.merchantservicecharge*vars.avgsales);
     console.log("Merchant's charge (amnt): " + merchantServiceChargeAmnt);
 
-    var fiveYearGross = compoundInterest(vars.avgsales,parseFloat(fixedMerchantCharge),fixedLoanLength);
-    var oneYearGross = fiveYearGross/5;
+    var dailyTotalPayment = loanPayment(vars.avgsales,parseFloat(fixedInterestRate),fixedLoanLength);
+    console.log("Daily payment: " + dailyTotalPayment);
+    var monthlyTotalPayment = dailyTotalPayment*30;
+    console.log("Monthly payment: " + monthlyTotalPayment);
+    var yearlyTotalPayment = dailyTotalPayment*356.25;
+    console.log("Yearly payment: " + yearlyTotalPayment);
+    var fiveYearTotalPayment = dailyTotalPayment*5*356.25;
+    console.log("Five year payment: " + fiveYearTotalPayment);
+    var fiveYearTotalInterest = fiveYearTotalPayment-vars.avgsales;
+    console.log("Five year total interest: " + fiveYearTotalInterest);
+    //var totalFiveYearPro = fiveYearGross-vars.avgsales;
+    //var fiveYearGross = compoundInterest(vars.avgsales,parseFloat(fixedMerchantCharge),fixedLoanLength);
 
     //var fiveYearNet = vars.avgsales*fixedLoanLength*12;
     //var fiveYearInterest = fiveYearGross-fiveYearNet;
     //var valueOfSeries = futureValueOfSeriesEnd(vars.avgsales,parseFloat(fixedMerchantCharge),fixedLoanLength);
 
-    console.log("Five year GROSS @ 18% (amnt): " + fiveYearGross);
-    console.log("One year GROSS: " + oneYearGross);
+    //console.log("Five year GROSS @ 18% (amnt): " + fiveYearGross);
+    //console.log("Five year INTEREST: " + totalFiveYearInterest);
     //console.log("Five year NET @ 18% (amnt): " + fiveYearNet);
     //console.log("Five year interest @ 18% (amnt): " + fiveYearInterest);
     //console.log("Future value of series for 5 years: " + valueOfSeries);
 
-    var oneYearPotential = oneYearGross + merchantServiceChargeAmnt;
-    console.log("One year potential: " + oneYearPotential);
+    //var oneYearPotential = totalFiveYearInterest + merchantServiceChargeAmnt;
+    //console.log("One year potential: " + oneYearPotential);
     /*
     var oneMonthPotential = oneYearPotential/60;
     console.log("Monthly potential: " + oneMonthPotential);
     */
-    var calc3 = oneYearPotential * 12;
-    console.log("Calc3: " + calc3);
+
+    var calc2 = fiveYearTotalInterest + merchantServiceChargeAmnt;
+    console.log("Calculation #2: " + calc2);
+    var calc3 = calc2 * 12;
+    console.log("Calculation #3: " + calc3);
 
     for(var c=1;c<21;c++) {
       var yearGross = calc3 * c;
@@ -101,7 +116,7 @@ var getMonthlyInterestFromAPR = function(val) {
 };
 
 var getDailyInterestFromAPR = function(val) {
-  return (val/100)/365;
+  return (val/365.25)/100;
 };
 
 var simpleInterest = function(pmt,r,n) {
@@ -132,6 +147,16 @@ var futureValueOfSeriesEnd = function(pmt,r,y) {
 var futureValueOfSeriesBeginning = function(pmt,r,y) {
   console.log("Future Value of Series Beginning period - pmt: " + pmt + " rate: " + r + " years: " + y);
 }
+
+var loanPayment = function(pmt,r,y) {
+  console.log("Loan payment - pmt: " + pmt + " rate: " + r + " years: " + y);
+
+  // This one reports ~20$ less per year
+  return (r*pmt)/(1-Math.pow((1+r),-1*(y*365.25)));
+  // This one reports $20 less per month...
+  //return pmt*(r+r/Math.pow((1+r),(y*365.25)-1));
+}
+
 var roundToCent = function(val) {
   return Math.round(val*100)/100;
 }
