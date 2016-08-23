@@ -104,11 +104,12 @@ var formulas = {
     vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
 
     /* CALCULATION #1 */
+    console.log("Product finance price: " + vars.productfinanceprice + " Product price: " + vars.productprice + " Merchant charge: " + vars.merchantservicecharge);
     var calc1 = vars.productfinanceprice - vars.productprice + vars.merchantservicecharge;
     console.log("CALC #1: " + calc1);
 
     /* CALCULATION #2 */
-    var calc2a = loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths));
+    var calc2a = vars.productprice-loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths));
     var calc2b = calc2a + calc1;
     console.log("CALC #2a: " + calc2a);
     console.log("CALC #2b: " + calc2b);
