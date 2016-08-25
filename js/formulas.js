@@ -62,29 +62,46 @@ var formulas = {
   },
   section2: function(vars) {
     /** Critical vars:
-     * sellprice
-     * interestrate
-     * financemonths
-     * ??? Annual loss ??? TODO: Ask Scott what that's for
+     * 1 - productprice
+     * 2 - productfinanceprice
+     * 3 - interestrate
+     * 4 - financemonths
+     * 5 - avgunits
+     * 6 - merchantservicecharge
      */
+    var dailyInterestRate = getDailyInterestFromAPR(vars.interestrate);
+    var monthlyInterestRate = getMonthlyInterestFromAPR(vars.interestrate);
     var resultTable=[];
-    vars.sellprice = parseFloat(vars.sellprice);
-    vars.interestrate = (parseFloat(vars.interestrate)/100);
-    vars.financemonths = parseInt(vars.financemonths);
+    vars.avgsales = parseFloat(vars.avgsales);
+    vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
 
-    var monthGross = compoundInterestPlusPrincipal(vars.sellprice,vars.interestrate,vars.financemonths);
-    console.log("Month (Gross): " + monthGross);
-    console.log("Month (Net): " + vars.sellprice);
-    var diffGross = monthGross-vars.sellprice;
-    console.log("Difference (Gross): " + diffGross);
-    var diffMonthly = diffGross/vars.financemonths
-    console.log("Difference (Monthly): " + diffMonthly);
-    resultTable.push(["Your profit potential per month:",roundToCent(diffMonthly)]);
+    /* CALCULATION #1 */
+    console.log("Product finance price: " + vars.productfinanceprice + " Product price: " + vars.productprice);
+    var calc1 = vars.productfinanceprice - vars.productprice;
+    console.log("CALC #1: " + calc1);
+
+    /* CALCULATION #2 */
+    var periodicLoanPayment = loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths*30.43));
+    console.log("Periodic Loan Payment: " + periodicLoanPayment);
+    var totalLoanPayment = periodicLoanPayment*vars.financemonths*30.43;
+    console.log("Total Loan Payment: " + totalLoanPayment);
+    var calc2a = totalLoanPayment-vars.productprice;
+    var calc2b = calc2a + calc1;
+    console.log("CALC #2a: " + calc2a);
+    console.log("CALC #2b: " + calc2b);
+
+    /* CALCULATION #3 */
+    var calc3 = calc2a * vars.avgunits;
+    console.log("CALC #3: " + calc3);
+
+    /* CALCULATION #4 */
+    var calc4 = calc3 * 12;
+    console.log("CALC #4: " + calc4);
 
     for(var c=1;c<21;c++) {
-      // This might be just a simple multiplier of monthAvg (above)
-      var yearDiff = diffMonthly*(c*12);
-      resultTable.push(["Your profit potential per " + c + " years:",roundToCent(yearDiff)]);
+      /* CALCULATION #5 */
+      console.log("Year " + c + " potential: " + (calc4*c));
+      resultTable.push(["Your profit potential per " + c + " years:",roundToCent(calc4*c)]);
     }
     return resultTable;
   },
@@ -109,9 +126,58 @@ var formulas = {
     console.log("CALC #1: " + calc1);
 
     /* CALCULATION #2 */
-    var calc2a = vars.productprice-loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths));
-    var calc2b = calc2a + calc1;
+    var periodicLoanPayment = loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths*30.43));
+    console.log("Periodic Loan Payment: " + periodicLoanPayment);
+    console.log("Monthly payment: " + periodicLoanPayment*30.43);
+    var totalLoanPayment = periodicLoanPayment*vars.financemonths*30.43;
+    console.log("Total Loan Payment: " + totalLoanPayment);
+    var calc2a = totalLoanPayment-vars.productprice;
     console.log("CALC #2a: " + calc2a);
+    var calc2b = calc2a + calc1;
+    console.log("CALC #2b: " + calc2b);
+
+    /* CALCULATION #3 */
+    var calc3 = calc2a * vars.avgunits;
+    console.log("CALC #3: " + calc3);
+
+    /* CALCULATION #4 */
+    var calc4 = calc3 * 12;
+    console.log("CALC #4: " + calc4);
+
+    for(var c=1;c<21;c++) {
+      /* CALCULATION #5 */
+      console.log("Year " + c + " potential: " + (calc4*c));
+      resultTable.push(["Your profit potential per " + c + " years:",roundToCent(calc4*c)]);
+    }
+    return resultTable;
+  },
+  section4: function(vars) {
+    /** Critical vars:
+     * 1 - numcustomers
+     * 2 - collactionsamnt
+     * 3 - merchantservicecharge
+     * 4 - customeravgspending
+     */
+    var dailyInterestRate = getDailyInterestFromAPR(vars.interestrate);
+    var monthlyInterestRate = getMonthlyInterestFromAPR(vars.interestrate);
+    var resultTable=[];
+    vars.avgsales = parseFloat(vars.avgsales);
+    vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
+
+    /* CALCULATION #1 */
+    console.log("Product finance price: " + vars.productfinanceprice + " Product price: " + vars.productprice + " Merchant charge: " + vars.merchantservicecharge);
+    var calc1 = vars.productfinanceprice - vars.productprice + vars.merchantservicecharge;
+    console.log("CALC #1: " + calc1);
+
+    /* CALCULATION #2 */
+    var periodicLoanPayment = loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths*30.43));
+    console.log("Periodic Loan Payment: " + periodicLoanPayment);
+    console.log("Monthly payment: " + periodicLoanPayment*30.43);
+    var totalLoanPayment = periodicLoanPayment*vars.financemonths*30.43;
+    console.log("Total Loan Payment: " + totalLoanPayment);
+    var calc2a = totalLoanPayment-vars.productprice;
+    console.log("CALC #2a: " + calc2a);
+    var calc2b = calc2a + calc1;
     console.log("CALC #2b: " + calc2b);
 
     /* CALCULATION #3 */
