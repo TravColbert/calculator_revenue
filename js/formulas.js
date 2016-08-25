@@ -158,40 +158,42 @@ var formulas = {
      * 3 - merchantservicecharge
      * 4 - customeravgspending
      */
-    var dailyInterestRate = getDailyInterestFromAPR(vars.interestrate);
+    var dailyInterestRate = getDailyInterestFromAPR(18);
+    /*
     var monthlyInterestRate = getMonthlyInterestFromAPR(vars.interestrate);
     var resultTable=[];
     vars.avgsales = parseFloat(vars.avgsales);
     vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
+    */
 
     /* CALCULATION #1 */
-    console.log("Product finance price: " + vars.productfinanceprice + " Product price: " + vars.productprice + " Merchant charge: " + vars.merchantservicecharge);
-    var calc1 = vars.productfinanceprice - vars.productprice + vars.merchantservicecharge;
+    var calc1 = vars.collectionsamnt/vars.numcustomers;
     console.log("CALC #1: " + calc1);
 
     /* CALCULATION #2 */
-    var periodicLoanPayment = loanPayment(vars.productfinanceprice,parseFloat(dailyInterestRate),(vars.financemonths*30.43));
-    console.log("Periodic Loan Payment: " + periodicLoanPayment);
-    console.log("Monthly payment: " + periodicLoanPayment*30.43);
-    var totalLoanPayment = periodicLoanPayment*vars.financemonths*30.43;
-    console.log("Total Loan Payment: " + totalLoanPayment);
-    var calc2a = totalLoanPayment-vars.productprice;
-    console.log("CALC #2a: " + calc2a);
-    var calc2b = calc2a + calc1;
-    console.log("CALC #2b: " + calc2b);
+    var calc2 = calc1-vars.merchantservicecharge;
+    console.log("CALC #2: " + calc2);
 
     /* CALCULATION #3 */
-    var calc3 = calc2a * vars.avgunits;
-    console.log("CALC #3: " + calc3);
+    var periodicLoanPayment = loanPayment(calc1,parseFloat(dailyInterestRate),(36*30.43));
+    console.log("Periodic Loan Payment: " + periodicLoanPayment);
+    console.log("Monthly payment: " + periodicLoanPayment*30.43);
+    var calc3 = periodicLoanPayment*36*30.43;
+    console.log("Total Loan Payment: " + calc3);
 
     /* CALCULATION #4 */
-    var calc4 = calc3 * 12;
-    console.log("CALC #4: " + calc4);
+    var calc4 = calc3*vars.numcustomers;
+    console.log("CALC4 #4: " + calc4);
+
+    /* CALCULATION #5 */
+    var calc5 = vars.customeravgspending*calc1;
+    console.log("CALC #5: " + calc5);
 
     for(var c=1;c<21;c++) {
-      /* CALCULATION #5 */
-      console.log("Year " + c + " potential: " + (calc4*c));
-      resultTable.push(["Your profit potential per " + c + " years:",roundToCent(calc4*c)]);
+      /* CALCULATION #6 */
+      var calc6 = roundToCent(calc4*c);
+      console.log("Year " + c + " potential: " + calc6);
+      resultTable.push(["Your profit potential per " + c + " years:",calc6]);
     }
     return resultTable;
   }
