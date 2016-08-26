@@ -11,7 +11,7 @@
         <!-- Place favicon.ico in the root directory -->
 
         <!-- <link rel="stylesheet" href="css/normalize.css"> -->
-        <link rel="stylesheet" href="css/kube.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -22,134 +22,112 @@
         <![endif]-->
 
         <header class="shadow">
-          <div class="row">
-            <div id="mainlogo" class="col offset-2 col-8">
-              <div class="row centered">
-                <a href="http://www.alwayscollect.com/"><img src="img/logo.png"/></a>
-              </div>
-              <div class="row centered">
-                <div id="maintitle" class="navitem" linkto="home">Revenue Projection Calculator</div>
-              </div>
-            </div>
+          <div class="row centered">
+            <a href="http://www.alwayscollect.com/"><img class="scaled" src="img/logo.png"/></a>
           </div>
+          <div id="maintitle" class="navitem align-center" linkto="home">Revenue Projection Calculator</div>
         </header>
 
         <!-- Home/Welcome Page -->
         <section id="home" class="active">
-          <div class="navitem row splice" linkto="section1">
-            <div class="col offset-2 col-1 text-right">
-              <div class="btn light-shadow" style="padding-top: 0.45em;">
-                <i class="fa fa-credit-card"></i>
-              </div>
+          <div class="navitem navrow" linkto="section1">
+            <div class="btn navbtn">
+              <i class="fa fa-credit-card"></i>
             </div>
-            <div class="col col-7">
-              <div class="menulink light-shadow">Revenue Lost From Credit Card Companies</div>
-            </div>
-          </div>
-          <div class="navitem row splice" linkto="section2">
-            <div class="col offset-2 col-1">
-              <div class="btn light-shadow" style="padding-top: 0.4em;">
-                <i class="fa fa-money"></i>
-              </div>
-            </div>
-            <div class="col col-7">
-               <div class="menulink light-shadow">Revenue Loss From Fear of Financing</div>
+            <div class="navlink">
+              <i class="fa fa-credit-card"></i>
+              Revenue Lost From Credit Card Companies
             </div>
           </div>
-          <div class="navitem row splice" linkto="section3">
-            <div class="col offset-2 col-1">
-              <div class="btn light-shadow" style="padding-top: 0.38em;">
-                <i class="fa fa-bank"></i>
-              </div>
+          <div class="navitem navrow" linkto="section2">
+            <div class="btn navbtn">
+              <i class="fa fa-money"></i>
             </div>
-            <div class="col col-7">
-              <div class="menulink light-shadow">Revenue Loss From Outsourced Financing</div>
+            <div class="navlink">
+              <i class="fa fa-money"></i>
+              Revenue Loss From Fear of Financing
             </div>
           </div>
-          <div class="navitem row splice" linkto="section4">
-            <div class="col offset-2 col-1">
-              <div class="btn light-shadow" style="padding-top: 0.38em;">
-                <i class="fa fa-bank"></i>
-              </div>
+          <div class="navitem navrow" linkto="section3">
+            <div class="btn navbtn">
+              <i class="fa fa-bank"></i>
             </div>
-            <div class="col col-7">
-              <div class="menulink light-shadow">Revenue Loss From Collections</div>
+            <div class="navlink">
+              <i class="fa fa-bank"></i>
+              Revenue Loss From Outsourced Financing
             </div>
+          </div>
+          <div class="navitem navrow" linkto="section4">
+            <div class="btn navbtn">
+              <i class="fa fa-bank"></i>
+            </div>
+            <div class="navlink">
+              <i class="fa fa-bank"></i>
+              Revenue Loss From Collections</div>
           </div>
         </section>
         <!-- Calculate Revenue Lost to Credit Card Companies -->
         <section id="section1">
-          <div class="container">
-            <div class="heading row">
-              <div class="col col-12">Revenue Loss From Merchant Services</div>
-            </div>
-            <div class="formitem row">
-              <div class="menuprompt col offset-2 col-8">What is your Monthly Average Sales in which Customers purchase with Credit Card?</div>
-              <div class="menuinput col offset-2 col-8">
-                <div class="row">
-                  <div class="col offset-1 col-1 prefix">$</div>
-                  <div class="col col-8">
-                    <input id="avgsales" class="moneyfield width-100" type="number"></input>
-                  </div>
-                </div>
+          <div class="heading">Revenue Loss From Merchant Services</div>
+          <div class="formitem">
+            <div class="menuprompt">What is your Monthly Average Sales in which Customers purchase with Credit Card?</div>
+            <div class="menuinput">
+              <div class="prefix">$</div>
+              <div class="field">
+                <input id="avgsales" class="moneyfield" type="number"></input>
               </div>
+              <div class="suffix">%</div>
             </div>
-            <div class="formitem row">
-              <div class="menuprompt col offset-2 col-8">What is Merchant Service Charging you to collect your own profits?</div>
-              <div class="menuinput col offset-2 col-8">
-                <div class="row">
-                  <div class="col offset-2 col-8">
-                    <input id="merchantservicecharge" class="interestfield width-100" type="number"></input>
-                  </div>
-                  <div class="inline col col-1 suffix">%</div>
-                </div>
+          </div>
+          <div class="formitem">
+            <div class="menuprompt">What is Merchant Service Charging you to collect your own profits?</div>
+            <div class="menuinput">
+              <div class="prefix">$</div>
+              <div class="field">
+                <input id="merchantservicecharge" class="interestfield" type="number"></input>
               </div>
+              <div class="suffix">%</div>
             </div>
-            <div class="formitem row">
-              <div class="menuprompt col offset-2 col-8">Calculate What I am Giving Away</div>
-              <div class="menuinput col col-12 btn-calculate">
-                <i class="btn fa fa-calculator"></i>
-              </div>
+          </div>
+          <div class="formitem">
+            <div class="menuprompt">Calculate What I am Giving Away</div>
+            <div class="menuinput btn-calculate">
+              <i class="btn fa fa-calculator"></i>
             </div>
           </div>
         </section>
         <section id="section1calculation">
-          <div class="heading row">
-            <div class="col col-12">Revenue Loss From Merchant Services</div>
-          </div>
-          <div class="formitem row">
-            <div class="menuinput col offset-2 col-8 tablecontainer">
+          <div class="heading">Revenue Loss From Merchant Services</div>
+          <div class="formitem resulttable">
+            <div class="menuinput tablecontainer">
               <table id="lossTable"></table>
             </div>
           </div>
-          <div class="formitem row">
-            <div class="menuprompt col offset-2 col-8">Potential Profit</div>
-            <div class="menuinput col offset-2 col-8">
-              <div class="row">
-                <div class="col offset-1 col-1 prefix">$</div>
-                <div class="col col-8">
-                  <input id="potentialprofit" class="width-100" type="number"></input>
-                </div>
+          <div class="formitem">
+            <div class="menuprompt">Potential Profit</div>
+            <div class="menuinput">
+              <div class="col offset-1 col-1 prefix">$</div>
+              <div class="field">
+                <input id="potentialprofit" class="width-100" type="number"></input>
               </div>
+              <div class="suffix">%</div>
             </div>
           </div>
-          <div class="formitem row">
-            <div class="col offset-2 col-8">
-              <div class="row">
-                <div class="navitem col col-4" linkto="section1">
-                  <i class="btn btn-back fa fa-arrow-left"></i>
+          <div class="formitem">
+              <div class="navrow space-around">
+                <div class="navitem" linkto="section1">
+                  <i class="btn btn-back fa fa-chevron-left"></i>
                 </div>
-                <div class="navitem col col-4" linkto="home">
-                  <i class="btn btn-home fa fa-arrow-up"></i>
+                <div class="navitem" linkto="home">
+                  <i class="btn btn-home fa fa-chevron-up"></i>
                 </div>
-                <div class="navitem col col-4" linkto="home">
-                  <i class="btn btn-forward fa fa-arrow-right"></i>
+                <div class="navitem" linkto="home">
+                  <i class="btn btn-forward fa fa-chevron-right"></i>
                 </div>
               </div>
-            </div>
           </div>
-          <div class="formitem row">
-            <div class="menuinput col col-12">
+          <div class="formitem">
+            <div class="menuinput">
               <i class="btn btn-back fa fa-print"></i>
             </div>
           </div>
@@ -496,7 +474,6 @@
           </div>
         </footer>
         <script src="js/jquery.min.js"></script>
-        <script src="js/kube.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/formulas.js"></script>
     </body>

@@ -106,8 +106,10 @@ var calculateFormula = function(section) {
   // Prepare object used to fill-in next section
   var resultTable = $("section#" + section + "calculation table").get();
   $(resultTable).empty();
+  $(resultTable).append("<caption>Profit Potential</caption>");
+  $(resultTable).append("<tr id=\"" + c + "\"><th class=\"years\">Year</th><th class=\"loss\">Potential</th></tr>");
   for(var c=0; c<result.length; c++) {
-    $(resultTable).append("<tr id=\"" + c + "\"><td>" + result[c][0] + "</td><td class=\"loss\">" + result[c][1] + "</td></tr>");
+    $(resultTable).append("<tr id=\"" + c + "\"><td class=\"years\">" + result[c][0] + "</td><td class=\"loss\">" + result[c][1] + "</td></tr>");
   }
   $("tr").click(function() {
     var lossValue=$(this).children("td.loss").html();
