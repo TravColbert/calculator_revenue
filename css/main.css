@@ -151,6 +151,12 @@ section.active {
   margin: 0.2em;
 }
 
+.menuprompt {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0.5em;
+}
+
 .menuinput {
   display: flex;
   flex-direction: row;
@@ -162,12 +168,6 @@ section.active {
 .menuinput div {
   font-size: 1em;
   font-weight: bold;
-}
-
-.menuprompt {
-  display: flex;
-  flex-direction: column;
-  padding: 0px 0.5em;
 }
 
 .field input[type="text"], .field input[type="number"] {
@@ -183,6 +183,18 @@ section.active {
 .menuinput, .navitem {
   font-size: 1.5em;
   cursor: pointer;
+}
+
+.interestfield .prefix {
+  visibility: hidden;
+}
+
+.moneyfield .suffix {
+  visibility: hidden;
+}
+
+.numberfield .suffix, .numberfield .prefix {
+  visibility: hidden
 }
 
 .navitem {
@@ -203,7 +215,6 @@ section.active {
   background: rgba(240,240,240,1);
   padding: 1em 0px;
 }
-
 
 /** BUTTONS **/
 .btn {
@@ -240,6 +251,8 @@ section.active {
 
 .prefix, .suffix {
   line-height: 1.25em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
 }
 
 .prefix {
