@@ -235,6 +235,13 @@ section.active {
 
 }
 
+.choicefield .btn:not(.selected) {
+  text-shadow: none;
+  color: #ccc;
+  background: transparent;
+  border: 1px dashed #ccc;
+}
+
 .formitem {
   display: flex;
   flex-direction: column;

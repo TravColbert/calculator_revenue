@@ -29,6 +29,15 @@ var initFields = function() {
   });
 }
 
+var initButtons = function() {
+  $(".choicefield .prefix").addClass("btn navbtn");
+  $(".choicefield .suffix").addClass("btn navbtn");
+  $(".choicefield .navbtn").click(function() {
+    $(this).addClass("selected");
+    $(this).siblings().removeClass("selected");
+  });
+}
+
 var validateInterestField = function(element) {
   var val = $(element).val() || null;
   if(!isValidInterestVal(val)) {
@@ -130,5 +139,6 @@ $(document).ready(function() {
   initLayout();
   initLinks();
   initFields();
+  initButtons();
   activateSection("home");
 })
