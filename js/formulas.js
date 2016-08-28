@@ -118,11 +118,17 @@ var formulas = {
     var monthlyInterestRate = getMonthlyInterestFromAPR(vars.interestrate);
     var resultTable=[];
     vars.avgsales = parseFloat(vars.avgsales);
-    vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
+    //vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
 
     /* CALCULATION #1 */
-    console.log("Product finance price: " + vars.productfinanceprice + " Product price: " + vars.productprice + " Merchant charge: " + vars.merchantservicecharge);
-    var calc1 = vars.productfinanceprice - vars.productprice + vars.merchantservicecharge;
+    console.log("Product finance price: " + vars.productfinanceprice + " Product price: " + vars.productprice + " Merchant charge: " + vars.merchantservicecharge + " Service Charge type: " + vars.merchantservicechargechoice);
+    var calc1;
+    if(vars.merchantservicechargechoice=="%") {
+      console.log("Calculating by percentage: " + vars.merchantservicecharge/100);
+      calc1 = vars.productprice*(vars.merchantservicecharge/100);
+    } else {
+      calc1 = vars.productfinanceprice - vars.productprice + vars.merchantservicecharge;
+    }
     console.log("CALC #1: " + calc1);
 
     /* CALCULATION #2 */

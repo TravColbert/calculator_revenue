@@ -35,6 +35,9 @@ var initButtons = function() {
   $(".choicefield .navbtn").click(function() {
     $(this).addClass("selected");
     $(this).siblings().removeClass("selected");
+    var choiceId = $(this).attr("for");
+    var choiceType = $(this).html();
+    $("input#" + choiceId).val(choiceType);
   });
 }
 
