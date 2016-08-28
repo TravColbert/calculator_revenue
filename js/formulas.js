@@ -165,19 +165,25 @@ var formulas = {
      * 4 - customeravgspending
      */
     var dailyInterestRate = getDailyInterestFromAPR(18);
+    var resultTable=[];
     /*
     var monthlyInterestRate = getMonthlyInterestFromAPR(vars.interestrate);
-    var resultTable=[];
     vars.avgsales = parseFloat(vars.avgsales);
     vars.merchantservicecharge = parseFloat(vars.merchantservicecharge/100);
     */
 
     /* CALCULATION #1 */
+    console.log("Collections amount: " + vars.collectionsamnt + " Customers: " + vars.numcustomers);
     var calc1 = vars.collectionsamnt/vars.numcustomers;
     console.log("CALC #1: " + calc1);
 
     /* CALCULATION #2 */
-    var calc2 = calc1-vars.merchantservicecharge;
+    var calc2;
+    if(vars.merchantservicechargechoice=="%") {
+      calc2 = calc1*(vars.merchantservicecharge/100);
+    } else {
+      calc2 = calc1-vars.merchantservicecharge;
+    }
     console.log("CALC #2: " + calc2);
 
     /* CALCULATION #3 */

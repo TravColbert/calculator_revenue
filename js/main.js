@@ -33,11 +33,13 @@ var initButtons = function() {
   $(".choicefield .prefix").addClass("btn navbtn");
   $(".choicefield .suffix").addClass("btn navbtn");
   $(".choicefield .navbtn").click(function() {
+    var parentSection = $(this).parents("section").attr("id");
     $(this).addClass("selected");
     $(this).siblings().removeClass("selected");
     var choiceId = $(this).attr("for");
     var choiceType = $(this).html();
-    $("input#" + choiceId).val(choiceType);
+    console.log("Selecting choice from section: " + parentSection + " #" + choiceId);
+    $("#" + parentSection + " input#" + choiceId).val(choiceType);
   });
 }
 
